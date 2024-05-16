@@ -1,5 +1,10 @@
 This is an example file for reflection in IBI1_2023-24.
 
-During this course, I have learnt version control, how to navigate Unix-like systems and how to write simple programs in Python.
+During this course, I have learnt version control, some knowledge about github and how to upload our documents on the github. 
+
+Addtionally, some basic codes and commands about python have also be learned in this course.
 
 I have also learnt to write careful instructions when communicating online!
+
+thanks for IBI1：）
+..

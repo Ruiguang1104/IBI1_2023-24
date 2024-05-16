@@ -1,0 +1,7 @@
+Question：
+How has the relationship between the DALYs in Canada and France changed over time?
+Are they becoming more similar, or less similar?
+
+hypothesis：
+becoming more similar
+the answer is in the question solution.py
