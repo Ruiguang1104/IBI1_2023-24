@@ -1,44 +1,52 @@
 import re
-def previous_line(text, line):
-    index = text.index(line)
-    if index > 0:
-        return text[index - 1]
-    else:
-        return None
-    #want to define a function that can help me find gene in the previous line because i want to find GTGTGT first then the gene name appears before GTGTGT 
-with open(r"C:\Users\86138\OneDrive - International Campus, Zhejiang University\桌面\ibi\IBI1_2023-24\Practical8\Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa",'r',encoding='utf-8') as file:
-    file111=file.read().split('\n')
-    #read the file
-    sequence=input("please input GTGTGT OR GTCTGT:")
-    #input the gene sequence we want
-    str(sequence)
-    if sequence=="GTGTGT":
-        new_file=open('GTGTGT_duplicated_genes.0fasta', 'a', encoding='utf-8')
-    elif sequence=="GTCTGT":
-        new_file=open('GTCTGT_duplicated_genes.fasta', 'a', encoding='utf-8')
-    i=0
-    count = 0
-    for line in file111:
-        if line.startswith(">"):
-            if count!=0:
-                new_file.write(f"The number of {sequence}: {count}\n")
-                count = 0 
+fasta_file_path = r'C:\Users\86138\OneDrive - International Campus, Zhejiang University\桌面\ibi ica\IBI1_2023-24\Practical8\Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa'#READ THE file
+genes_dictionary = {}
+
+def count_GTGTGT(string):#make a funtion that can count GTGTGT
+    counter = 0
+    for i in range(0, len(string)-1):
+        substring = string[i:i+6]  
+        if substring == 'GTGTGT':
+            counter += 1
+    return counter
+
+def count_GTCTGT(string):#make a funtion that can count GTCTGT
+    counter = 0
+    for i in range(0, len(string)-1):
+        substring = string[i:i+6]  
+        if substring == 'GTCTGT':
+            counter += 1
+    return counter
+
+with open(fasta_file_path, 'r') as fasta_file:
+    for line in fasta_file:#read every single line in the fasta_file
+        if line.startswith('>'):#check the line that start with >
+            gene_name = line
+            genes_dictionary[gene_name] = ""
         else:
-            count += line.count(sequence)3493493493493493
-        # if last_gene_start is not None and count > 0:
-            # new_file.write(f"The number of {sequence}: {count}\n")
-    for line in file111:
-        if sequence in line:
-            #fine the sequence
-            # i+=1
-            previous_line(file111,line)
-            if previous_line(file111,line).startswith(">"):
-                #try to find the gene name
-                match =re.search(r'gene:([A-Za-z0-9_-]+)\s',previous_line(file111,line))
-                print(match.group(1))
-                print(line)
-                new_file.write(match.group(1)+'\n')
-                new_file.write(line + '\n')
+            genes_dictionary[gene_name] += line.strip()
+
+genes = input('Please enter your sequences: ')
+if genes == 'GTGTGT':
+    with open('GTGTGT_duplicate_genes.fa','w') as file1:  
+        for gene_name, gene_sequence in genes_dictionary.items():
+            simplified_name = str(re.findall(r'>(.+?)\s',gene_name))
+            count = count_GTGTGT(gene_sequence)#use the funtion count GTGTGT
+            if count != 0 and 'duplication' in gene_name:
+                file1.write(f" {count}  {simplified_name}"+'\n'+ gene_sequence + '\n')#write a new file to store the result
+                simplifed_name = ''
+elif genes == 'GTCTGT':
+    with open('GTCTGT_duplicate_genes.fa','w') as file2:
+        for gene_name, gene_sequence in genes_dictionary.items():
+            simplified_name = str(re.findall(r'>(.+?)\s',gene_name))
+            count = count_GTCTGT(gene_sequence)#use the funtion count GTCTGT
+            if count !=0 and 'duplication' in gene_name:
+                file2.write(f" {count} {simplified_name}"+'\n'+ gene_sequence + '\n')#write a new file to store the result
+                simplified_name = ''
+else:
+    print('your input sequences is wrong, please try again')
+
+    #below are several tries...
                 # new_file.write(f"The number of {sequence}:")
                 # new_file.write(str(i))
             # for line in file111:
