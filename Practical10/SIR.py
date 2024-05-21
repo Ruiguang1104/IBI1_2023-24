@@ -1,7 +1,10 @@
 import random
-import matplob as pl
+import matplotlib.pyplot as plt
+
 class sirmodel:
+    #use the class to classify these functions
     def __init__(self, population, initial_infected, gamma, beta):
+        #set the function init :)
         self.p=population
         self.i=initial_infected
         self.gamma=gamma #recovery rate
@@ -12,9 +15,10 @@ class sirmodel:
         self.i_values=[self.i]
         self.s_values=[self.s]
         self.r_values=[self.r]
-    # code to proccess the data as a model
+    # proccess the data as a model
     def run(self,days):
         for i in range(days):
+            #use the run function to for circulate the days
             new_i=self.s * self.beta * self.i /self.p
             new_r=self.i * self.gamma
             #now calculate the updating number of the 3 sorts of people: infected, recoverd and suspecticle
@@ -25,7 +29,7 @@ class sirmodel:
             self.i_values.append(self.i)
             self.s_values.append(self.s)
             self.r_values.append(self.r)
-    #plot the image
+    #draw a image
     def print(self):
         import matplotlib.pyplot as plt
         plt.plot(self.i_values,label='infected')
@@ -47,3 +51,4 @@ days=1000
 model=sirmodel(population, initial_infected,gamma,beta)
 model.run(days)
 model.print()
+#print it and that's all :0
