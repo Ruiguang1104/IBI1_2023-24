@@ -1,5 +1,5 @@
 import random
-
+import matplob as pl
 class sirmodel:
     def __init__(self, population, initial_infected, gamma, beta):
         self.p=population
