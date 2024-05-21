@@ -42,7 +42,7 @@ ax1.set_xticklabels(categories_uk, rotation=45, ha="right")
 ax1.legend()
 #draw the bar chart of UK
 
-ax2.bar(categories_china, china_population, color='orange', edgecolor='purple', label='China')
+ax2.bar(categories_china, china_population, color='red', edgecolor='black', label='China')
 ax2.set_title('Population of China Cities')
 ax2.set_xlabel('Cities in China')
 ax2.set_ylabel('Population')
