@@ -17,6 +17,7 @@ cities_of_countries={
 #make a dictionary about the cities of countries
 uk_population=list(cities_of_countries['UK'].values())
 China_population=list(cities_of_countries['China'].values())
+#convert the dictionary to the list!!!
 uk_population.sort()
 China_population.sort()
 #classify the data
