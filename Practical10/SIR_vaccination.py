@@ -1,7 +1,10 @@
+#this is for SIR vaccination
 import random
 import matplotlib.pyplot as plt
+
 class sirmodel:
     def __init__(self, population, initial_infected, gamma, beta, vaccination_rate):
+        #make a init function
         self.p=population
         self.i=initial_infected
         self.gamma=gamma #recovery rate
@@ -12,9 +15,10 @@ class sirmodel:
         #define an array
         self.i_values=[self.i]
         
-    #code to proce the data as a model
+    
     def run(self,days):
         for i in range(days):
+            #use the for loop to run the 'days'
             new_i=self.s * self.beta * self.i /self.p
             new_r=self.i * self.gamma
             #now calculate the updating number of the 3 sorts of people: infected, recoverd and suspecticle
@@ -26,7 +30,7 @@ class sirmodel:
             
     
 def plot_models(models):
-    #given there are multiple situations to illustrate in one image, there will be more than 1 "model"
+    #more than 1 "model" will be shown in this
     for model in models:
         plt.plot(model.i_values,label=f'vaccination_rate:{model.v * 100/model.p}%') # make sure the label matches the figure it represent (which vaccination rate) well
         
@@ -39,16 +43,19 @@ beta=0.3
 days=1000
 
 models=[]
-for percent in range(0,101,10):# the chosen percentage start at 0 and increase at a ladder of 10%
+for percent in range(0,101,10):
+    # the percentage start at 0 and increase at a ladder of 10%
     vaccination_rate=percent/100
     model=sirmodel(population, initial_infected, gamma,beta, vaccination_rate)
     model.run(days) 
-    models.append(model) # to ensure all the curves appear on the same image
+    models.append(model)
+    # make sure that all the curves appear on the same image
     
 plot_models(models)
 plt.xlabel('Days')
 plt.ylabel('number of people')
 plt.title('sir model under different vaccination rate ')
 plt.legend()
+#save the figure as png
 plt.savefig(r"C:\Users\86138\OneDrive - International Campus, Zhejiang University\桌面\ibi ica\IBI1_2023-24\Practical10\sir_vaccination_rate.png",format="png")
 plt.show()
