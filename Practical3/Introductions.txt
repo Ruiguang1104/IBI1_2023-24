@@ -1,5 +1,6 @@
 Hello. 
-My name is Rob.
-I like drinking tea and eating chocolate biscuits.
-I am enjoying teaching IBI1 in person again 
-I am happy that I can push my repo from Visual Studio Code to GitHub
+My name is Cai Ruiguang.
+I like drinking tea and eating watermelon.
+Watermenlons are my favourite fruit.
+I am enjoying learning IBI1 in person. 
+I am very excited to upload my codes onto github :)
